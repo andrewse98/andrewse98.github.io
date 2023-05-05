@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "A Side Note" # It's a pun of Andrew's Side Note
+  page-footer:
+    border: true 
+    left: "Copyright 2022, A. Setiono"
+    right: 
+      - icon: twitter
+        href: https://twitter.com/setiono_andrew
+      - icon: github
+        href: https://github.com/andrewse98/personal-web
+  navbar:
+    background: primary
+    collapse: false
+    search: false
+    left:
+      - text: "Blog"
+        file: index.qmd
+      - text: "Notes"
+      - text: "TidyTuesday"
+  repo-url: https://github.com/andrewse98/personal-web
+  repo-actions: [issue]
+
+format:
+  html:
+    theme: sandstone
+    mainfont: Roboto
+    css: styles.css
+    toc: true
+
+
+
