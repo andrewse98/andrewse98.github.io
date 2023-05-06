@@ -19,7 +19,8 @@ website:
     left:
       - text: "Blog"
         file: index.qmd
-      - text: "Notes"
+      - text: "About"
+        file: about.qmd
       - text: "TidyTuesday"
   repo-url: https://github.com/andrewse98/personal-web
   repo-actions: [issue]

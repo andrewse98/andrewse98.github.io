@@ -1,0 +1,14 @@
+---
+title: ""
+description: "Description of the Me"
+---
+
+::: {layout="[30, 70]" .profile-header}
+
+![](img/andrew_transparent.png){.profile-pic}
+
+Hello, I'm Andrew Setiono. I am a Research Master student at Faculty of BSS in the University of Groningen. I am learning on how to researching changes, especially those that happens in organizations and workers life due to digital transformation. 
+
+:::
+
+In this site, I am sharing my opinion and things that I find interesting.
