@@ -4,7 +4,6 @@ project:
 
 website:
   # title: "A's Side Note" # It's a pun of Andrew's Side Note
-  favicon: favicon.ico
   page-footer:
     border: true 
     left: "Copyright 2022, A. Setiono"
@@ -13,11 +12,12 @@ website:
         href: https://twitter.com/setiono_andrew
       - icon: github
         href: https://github.com/andrewse98/personal-web
+  favicon: img/favicon.ico
   navbar:
     background: dark
     collapse: false
     search: false
-    logo: web-logo.png  
+    logo: img/web-logo.png  
     left:
       - text: "Blog"
         file: index.qmd
