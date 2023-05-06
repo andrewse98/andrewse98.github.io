@@ -1,6 +1,6 @@
 ---
-title: "Blog Posts"
-description: "Interesting thoughts"
+title: "Andrew's Blog"
+description: "A collection of thoughts about Research, Data Science, and Organizational Psychology"
 listing:
     contents: posts
     sort: "date desc"

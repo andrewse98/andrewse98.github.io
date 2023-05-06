@@ -14,9 +14,10 @@ website:
       - icon: github
         href: https://github.com/andrewse98/personal-web
   navbar:
-    background: primary
+    background: dark
     collapse: false
     search: false
+    logo: img/web-logo.png  
     left:
       - text: "Blog"
         file: index.qmd
@@ -28,7 +29,7 @@ website:
 
 format:
   html:
-    theme: sandstone
+    theme: darkly
     mainfont: Roboto
     css: styles.css
     toc: true
