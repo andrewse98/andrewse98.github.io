@@ -3,7 +3,8 @@ project:
   output-dir: docs
 
 website:
-  title: "A Side Note" # It's a pun of Andrew's Side Note
+  # title: "A's Side Note" # It's a pun of Andrew's Side Note
+  favicon: img/favicon.ico
   page-footer:
     border: true 
     left: "Copyright 2022, A. Setiono"
