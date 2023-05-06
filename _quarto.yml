@@ -30,7 +30,7 @@ website:
 format:
   html:
     theme: darkly
-    mainfont: Roboto
+    mainfont: roboto
     css: styles.css
     toc: true
 
