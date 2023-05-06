@@ -17,7 +17,7 @@ website:
     background: dark
     collapse: false
     search: false
-    logo: img/web-logo.png  
+    logo: img/web_logo.png  
     left:
       - text: "Blog"
         file: index.qmd
