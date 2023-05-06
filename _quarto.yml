@@ -29,8 +29,8 @@ website:
 
 format:
   html:
-    theme: darkly
-    mainfont: roboto
+    theme: 
+      dark: darkly
     css: styles.css
     toc: true
 
