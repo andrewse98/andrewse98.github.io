@@ -4,7 +4,7 @@ project:
 
 website:
   # title: "A's Side Note" # It's a pun of Andrew's Side Note
-  favicon: img/favicon.ico
+  favicon: favicon.ico
   page-footer:
     border: true 
     left: "Copyright 2022, A. Setiono"
@@ -17,7 +17,7 @@ website:
     background: dark
     collapse: false
     search: false
-    logo: img/web-logo.png  
+    logo: web-logo.png  
     left:
       - text: "Blog"
         file: index.qmd
