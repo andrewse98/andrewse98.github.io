@@ -19,8 +19,8 @@ website:
     search: false
     logo: img/web_logo.png  
     left:
-      # - text: "Blog"
-      #   file: index.qmd
+      - text: "Blog"
+        file: index.qmd
       - text: "About"
         file: about.qmd
       - text: "TidyTuesday"
@@ -33,5 +33,6 @@ format:
     css: styles.css
     toc: true
 
+git commit -m "feat: add anova stuff"
 
 
