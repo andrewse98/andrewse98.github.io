@@ -3,16 +3,14 @@ title: "Better Approaches to Performance Monitoring"
 date: 2023-06-03
 toc: true
 toc_float: true
-
+reading-time: true
+categories: [I/O Psych, Essay]
 image: luke-chesser-unsplash.jpg
 image-alt: >
     An Illustration of Performance Monitoring (Photo by Luke Chesser on Unsplash
-
 description: >
-    The prevalence of the 'great resignation' and disengaged workforce poses significant challenges for global employers in talent retention and maintaining productivity. While effective employee performance monitoring is crucial, intrusive and demanding monitoring practices are met with employee resistance, leading to privacy invasion, focus interference, and reduced autonomy. 
+    Employee performance monitoring can crucial in talent retention and productivity maintenance---especially with a disengaged workforce---but they are often intrusive and demanding. Are there any better approaches?
 ---
-
-# Introduction
 
 As employers of a global company, the ‘great resignation’ and ‘quiet quitting’ have become the forefront of workplace issues that warrants concern. A recent survey from McKinsey reported that 40% of the global workforce is somewhat likely to leave their current jobs (De Smet et al., 2021). Another report from Gallup (2022) revealed that only 21% of global workers are engaged at work. The same report also showed that nearly 5 out of 10 workers experience worry and stress daily at work. These reports presented the challenging landscape of retaining talents and maintaining their engagement.
 
