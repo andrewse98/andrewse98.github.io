@@ -2,12 +2,17 @@
 title: "Andrew's Blog"
 description: "A collection of thoughts about Research, Data Science, and Organizational Psychology"
 listing:
+    id: blog-listings
     contents: posts
     sort: "date desc"
-    type: default
+    type: grid
     categories: true
     sort-ui: false
     filter-ui: false
 page-layout: full
 title-block-banner: true
+page-navigation: true
 ---
+
+::: {#blog-listings}
+:::

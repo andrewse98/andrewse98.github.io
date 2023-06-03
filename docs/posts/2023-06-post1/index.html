@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.324">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-06-03">
+<meta name="description" content="The prevalence of the ‘great resignation’ and disengaged workforce poses significant challenges for global employers in talent retention and maintaining productivity. While effective employee performance monitoring is crucial, intrusive and demanding monitoring practices are met with employee resistance, leading to privacy invasion, focus interference, and reduced autonomy.">
+
+<title>Better Approaches to Performance Monitoring</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/web_logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">TidyTuesday</span></li>
+</ul>
+          <div class="quarto-navbar-tools ms-auto">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#the-effect-of-performance-monitoring-on-employees" id="toc-the-effect-of-performance-monitoring-on-employees" class="nav-link" data-scroll-target="#the-effect-of-performance-monitoring-on-employees">The Effect of Performance Monitoring on Employees</a>
+  <ul class="collapse">
+  <li><a href="#performance-monitoring-and-job-demand" id="toc-performance-monitoring-and-job-demand" class="nav-link" data-scroll-target="#performance-monitoring-and-job-demand">Performance monitoring and job demand</a></li>
+  <li><a href="#performance-monitoring-and-control" id="toc-performance-monitoring-and-control" class="nav-link" data-scroll-target="#performance-monitoring-and-control">Performance monitoring and control</a></li>
+  <li><a href="#performance-monitoring-and-social-support" id="toc-performance-monitoring-and-social-support" class="nav-link" data-scroll-target="#performance-monitoring-and-social-support">Performance Monitoring and Social Support</a></li>
+  </ul></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations">Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#design-monitoring-systems-that-allows-recovery" id="toc-design-monitoring-systems-that-allows-recovery" class="nav-link" data-scroll-target="#design-monitoring-systems-that-allows-recovery">Design Monitoring Systems that Allows Recovery</a></li>
+  <li><a href="#involve-employees-while-designing-monitoring-system" id="toc-involve-employees-while-designing-monitoring-system" class="nav-link" data-scroll-target="#involve-employees-while-designing-monitoring-system">Involve Employees while Designing Monitoring System</a></li>
+  <li><a href="#empower-leaders-to-be-responsible-to-others" id="toc-empower-leaders-to-be-responsible-to-others" class="nav-link" data-scroll-target="#empower-leaders-to-be-responsible-to-others">Empower Leaders to be Responsible to Others</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/andrewse98/personal-web/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Better Approaches to Performance Monitoring</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>The prevalence of the ‘great resignation’ and disengaged workforce poses significant challenges for global employers in talent retention and maintaining productivity. While effective employee performance monitoring is crucial, intrusive and demanding monitoring practices are met with employee resistance, leading to privacy invasion, focus interference, and reduced autonomy.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 3, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>As employers of a global company, the ‘great resignation’ and ‘quiet quitting’ have become the forefront of workplace issues that warrants concern. A recent survey from McKinsey reported that 40% of the global workforce is somewhat likely to leave their current jobs (De Smet et al., 2021). Another report from Gallup (2022) revealed that only 21% of global workers are engaged at work. The same report also showed that nearly 5 out of 10 workers experience worry and stress daily at work. These reports presented the challenging landscape of retaining talents and maintaining their engagement.</p>
+<p>To thrive against these challenging work trends as a global company, an effective employee performance monitoring may prove to be essential. Employee performance monitoring entails various workplace practices that allow the collection of performance data from employees (Stanton, 2000). Such performance data may allow employers to identify which employees display high performance and should be retained. Furthermore, it may reveal which employees are showing signs of disengagement. Recently, these practices have been rapidly developing—from traditional to electronic performance monitoring—due to digital transformation within companies and the pandemic. Stanton (2000) highlighted that electronic monitoring differs from traditional monitoring, especially in its ability to collect performance data; electronic monitoring allows continuous monitoring of multiple dimensions of work performance, whereas traditional monitoring requires the presence of human observers. Furthermore, electronic has an obvious advantage of remote monitoring which aids employers during the pandemic.</p>
+<p>Despite its apparent advantages, employees are pushing back against intrusive and demanding performance monitoring (Kantor et al., 2022). oday, both white- and blue-collar workers are dealing with monitoring software that invades their privacy (e.g., software that takes photos at multiple random times a day) and interferes with their focus (e.g., “idle” buttons). Furthermore, they are dealing with micro-managing leaders who demand multiple, but often unnecessary, status reports. Moreover, these practices have been taken to the extent that employees are unable to do essential offline work (e.g., deep thinking, reading printouts, talking to customers) or breaks (e.g., bathroom breaks) without receiving a reprimand from the software or their leaders (e.g., through constant check-in, notifications, or emails).</p>
+<p>This trend of employees’ pushback indicates the mounting pressure to maintain productivity among employers. However, it also revealed that employers are unaware of how employees would react to monitoring system features. Therefore, understanding the underlying psychological process employees experience under performance monitoring would likely result in a competitive advantage over other companies. Furthermore, such understanding would allow for designing an effective monitoring system.</p>
+<p>Research in organizational psychology may provide a framework and insights to move forward. Specifically, adapting Carayon’s (1993) framework, employee performance monitoring is proposed to influence employee well-being through job design. Job designs are further divided into three key components: (1) job demand, (2) job control, and (3) social support. In the following paragraphs, these components will be extended to gain a deeper understanding employees’ psychological process.</p>
+</section>
+<section id="the-effect-of-performance-monitoring-on-employees" class="level1">
+<h1>The Effect of Performance Monitoring on Employees</h1>
+<section id="performance-monitoring-and-job-demand" class="level2">
+<h2 class="anchored" data-anchor-id="performance-monitoring-and-job-demand">Performance monitoring and job demand</h2>
+<p>Carayon’s (1993) framework proposed that performance monitoring could affect the level of stress that employees experience through its influence on job demand. Employees reported that monitoring software often tracks their mouse movements and keyboard clicks, which forces them to be constantly working or active, or else they would be marked with inactivity (Kantor et al., 2022). This is an example of real-time performance tracker that characterizes current performance monitoring. Under constant pressure, employees may perceive an increase in their job demands (i.e., high time pressure and workload), thus increasing stress. Indeed, the pressure to be constantly “on” can be seen as a form of task-related job stressor (Sonnentag &amp; Frese, 2012, p.&nbsp;562), which could reduce employee well-being (Green, 2004).</p>
+<p>Furthermore, the constant pressure that performance monitoring imposes on employees may prevent them from recovering and potentially prolong their stress responses which would be harmful in the long run. According to DiStaso and Shoss (2020), employees need to perceive an “end” state of their current workload (e.g., employees only need to clock in for 40 hours of work per week, project timelines indicating when it would be finished). They found that anticipating a workload decrease would help employees buffer against the negative effect of workload stressors. However, the typical characteristic of performance monitoring that interferes with “idle” times (e.g., bathroom breaks, talking to family or colleagues) may prevent employees from seeing the proverbial “light at the end of the tunnel.” Thus, exacerbating the negative effect of the workload.</p>
+</section>
+<section id="performance-monitoring-and-control" class="level2">
+<h2 class="anchored" data-anchor-id="performance-monitoring-and-control">Performance monitoring and control</h2>
+<p>Another important factor that is influenced by performance monitoring is employees’ enactment of control at work. Drawing from Kotabe and Hofmann (2015) Integrative Self-Control Theory (ISCT), we conclude that there are three possible avenues of performance monitoring effect on employee behavioral enactment: (1) control motivation, (2) control capacity, and (3) enactment constraints.</p>
+<p>The first avenue, control motivation, is defined as the personal “aspiration to control desire” (Kotabe &amp; Hofmann, 2015, p.&nbsp;624). Lian et al.&nbsp;(2017) noted that individuals are motivated to engage in self-control at work based on its expected consequences. Control motivation is then closely related to performance monitoring. Performance monitoring communicates which behaviors are rewarded (or punished), allowing employees to evaluate the value and consequence of their behaviors.</p>
+<p>The second avenue, control capacity, pertains to individuals’ resources that enable them to override desire (Kotabe &amp; Hofmann, 2015). It was found to be closely linked with executive functions and relied on direct attention—a depletable and restorable resource (Kaplan &amp; Berman, 2010). Performance monitoring has the potential to redirect or deplete attention. In the former case, performance monitoring may direct employees’ attention to work dimensions that need further improvement, thus helping them refocus self-control effort to enhance task performance. In the latter case, intrusive performance monitoring can potentially distract employees from focusing on work or essential tasks. Jeske and Santuzzi (2015) found that close performance monitoring reduce employees perceived control. Furthermore, performance monitoring only directs attention to those tasks that are being monitored, thus depleting resources from other tasks (Ravid et al., 2020).</p>
+<p>The last avenue, enactment constraint, represents the contextual factors that restrict behavioral options (Kotabe &amp; Hofmann, 2015). This contextual restriction is related to Carayon’s (1993) idea of job control as the mediator between performance monitoring and stress. Specifically, Carayon (1993) argued that some features of performance monitoring might influence the level of control that employees have over their pace of work (i.e., instrumental control) or how tasks are executed and expected (i.e., conceptual control). Indeed, we saw that intrusive performance monitoring could make employees feel dictated. For instance, Kantor et al.&nbsp;(2022) reported how performance monitoring software dictates hospice chaplains’ relationships with the dying; they sometimes have to change the nature of their relationships (e.g., shifted time and quality of relationship) to meet the standard determined by the software.</p>
+</section>
+<section id="performance-monitoring-and-social-support" class="level2">
+<h2 class="anchored" data-anchor-id="performance-monitoring-and-social-support">Performance Monitoring and Social Support</h2>
+<p>Social support is the last component of job design that mediates the effect of performance monitoring (Carayon, 1993). Carayon (1993) argued that specific characteristics of the performance monitoring system might change the nature of social support employees receive from supervisors. Anecdotal examples of managers who immediately notify their workers after brief “Away” periods or constantly ask for progress updates from their subordinates (Tatum, 2022), are indicative of the changes in the nature of leader’s support. These changes may happen because performance monitoring systems shape how leaders and their subordinates construe their power (Sewell et al., 2012). The availability of an intrusive monitoring system may possibly obscure the leader’s sense of social connection to their employees since leaders primarily interact with their employees through the performance metric. This severing of social connection thus reduces the social support that leaders provide to their subordinates, leaving them with increasing work pressure but low support.</p>
+</section>
+</section>
+<section id="recommendations" class="level1">
+<h1>Recommendations</h1>
+<p>As noted above, performance monitoring may affect workers well-being and organizational behavior by influencing employee job demand, control, and social relationship with their behavior. Taking these processes into account there are three recommendations that should be considered.</p>
+<section id="design-monitoring-systems-that-allows-recovery" class="level2">
+<h2 class="anchored" data-anchor-id="design-monitoring-systems-that-allows-recovery">Design Monitoring Systems that Allows Recovery</h2>
+<p>As discussed, the monitoring system can increase employee stress because it increases job demand and has the potential to reduce control capacity from essential tasks. One way to reduce these adverse effects is to avoid constant monitoring and embed recovery time or break into the monitoring system. Short breaks allow employees to replenish control capacity (Lian et al., 2017). Furthermore, it is vital that the system not only allows for recovery but also promotes awareness for employees that they will have recovery. Anticipation of a workload decrease (i.e., availability of recovery time) may buffer employees from experiencing negative emotions in the current high workload condition (DiStaso &amp; Shoss, 2020).</p>
+<p>Embedding recovery times to the monitoring system can be done by allowing “idle” time that is considered reasonable for taking breaks. For example, Amazon has relaxed its performance monitoring regulations by dropping off the term “time off task” and instructing their managers to only look for “idle” periods longer than 15 minutes. Moreover, the monitoring system can be designed to stop when certain conditions are met, therefore creating the anticipation of a decrease in workload. For instance, instead of designing a monitoring system that continuously tracks mouse activities, employers may opt for a monitoring system that can be turned off after certain working hours or goals are met.</p>
+</section>
+<section id="involve-employees-while-designing-monitoring-system" class="level2">
+<h2 class="anchored" data-anchor-id="involve-employees-while-designing-monitoring-system">Involve Employees while Designing Monitoring System</h2>
+<p>Intensive monitoring system can sometimes be perceived as “demoralizing” and not accurately reflect the nature of work that employees are going through (Kantor et al., 2022). These reports might be indicative that monitoring system are often designed with the purpose of surveillance and punishment. In other words, the system is designed without a rationale beyond collecting employee information or without employees interest of pursuing their work goals. These may create perceptions of low control among employees and increase work pressure and stress. Instead of leaving out employees from the design process, creating opportunities for discussion and providing legitimate justification as to why the monitoring should exist may be more useful.</p>
+<p>Within the discussion process, employees may provide information about which tasks should be considered as important to be monitored. Furthermore, employees can provide ideas as to how their performance should ideally be monitored. By giving opportunities for discussing the monitoring process, employees perceive that they have some level of control toward their job, thus increasing job control. Additionally, employee should be provided with justification for the monitoring system. Justification of system tend to produce positive response, such as greater feelings of justice, in those being monitored (Ravid et al., 2020).</p>
+</section>
+<section id="empower-leaders-to-be-responsible-to-others" class="level2">
+<h2 class="anchored" data-anchor-id="empower-leaders-to-be-responsible-to-others">Empower Leaders to be Responsible to Others</h2>
+<p>Leaders hold a strategic position in a performance monitoring system as they hold the power to manage and discipline their subordinates (Sewell et al., 2012). However, as discussed above, one must be cautious about how the performance monitoring system influences a leader’s construal of their power. An intrusive monitoring system may reduce social connections, thus severing the relational aspect of power. Tost and Johnson (2019) argued that leaders who failed to construe the relational aspect of power would refrain from investing their resources to benefit members of the group. Consequently, it is important to influence leaders to construe their power as a responsibility to be stewards of their subordinates.<br>
+One way to change a leader’s power construal is to introduce, develop, or strengthen benevolent power norms and dependency awareness. Tost and Johnson (2019) found that benevolent power norms mediated the relationship between structural power and responsibility. Benevolent power norms may inform leaders of the expectation that they should use performance monitoring (i.e., a form of structural power) to benefit the interests of employees. Furthermore, leaders should be made aware that their subordinates are also dependent on leaders’ access to performance monitoring to evaluate their performances and determine ways to enhance them.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<p>Carayon, P. (1993). Effect of Electronic Performance Monitoring on Job Design and Worker Stress: Review of the Literature and Conceptual Model. Human Factors, 35(3), 385–395. https://doi.org/10.1177/001872089303500301</p>
+<p>De Smet, A., Dowling, B., Mugayar-Baldocchi, M., &amp; Schaninger, B. (2021). How companies can turn the Great Resignation into the Great Attraction | McKinsey. https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/great-attrition-or-great-attraction-the-choice-is-yours</p>
+<p>DiStaso, M. J., &amp; Shoss, M. K. (2020). Looking forward: How anticipated workload change influences the present workload–emotional strain relationship. Journal of Occupational Health Psychology, 25(6), 401–409. https://doi.org/10.1037/ocp0000261</p>
+<p>Gallup. (2022). State of the Global Workplace 2020 Report: The Voice of the World’s Employees. https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx</p>
+<p>Green, F. (2004). Work Intensification, Discretion, and the Decline in Well-Being at Work. Eastern Economic Journal, 30(4), 615–625.</p>
+<p>Jeske, D., &amp; Santuzzi, A. M. (2015). Monitoring what and how: Psychological implications of electronic performance monitoring. New Technology, Work and Employment, 30(1), 62–78. https://doi.org/10.1111/ntwe.12039 Kantor, J., Sundaram, A., Aufrichtig, A., &amp; Taylor, R. (2022, August 15). The Rise of the Worker Productivity Score. The New York Times. https://www.nytimes.com/interactive/2022/08/14/business/worker-productivity-tracking.html</p>
+<p>Kaplan, S., &amp; Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science, 5(1), 43–57. https://doi.org/10.1177/1745691609356784</p>
+<p>Kotabe, H. P., &amp; Hofmann, W. (2015). On Integrating the Components of Self-Control. Perspectives on Psychological Science, 10(5), 618–638. https://doi.org/10.1177/1745691615593382</p>
+<p>Lian, H., Yam, K. C., Ferris, D. L., &amp; Brown, D. (2017). Self-Control at Work. Academy of Management Annals, 11(2), 703–732. https://doi.org/10.5465/annals.2015.0126</p>
+<p>Ravid, D. M., Tomczak, D. L., White, J. C., &amp; Behrend, T. S. (2020). EPM 20/20: A Review, Framework, and Research Agenda for Electronic Performance Monitoring. Journal of Management, 46(1), 100–126. https://doi.org/10.1177/0149206319869435</p>
+<p>Sewell, G., Barker, J. R., &amp; Nyberg, D. (2012). Working under intensive surveillance: When does ‘measuring everything that moves’ become intolerable? Human Relations, 65(2), 189–215. https://doi.org/10.1177/0018726711428958</p>
+<p>Sonnentag, S., &amp; Frese, M. (2012). Stress in Organizations. In N. W. Schmitt &amp; S. Highhouse (Eds.), Handbook of psychology, Vol. 12: Industrial and organizational psychology (pp.&nbsp;560–592). Wiley.</p>
+<p>Stanton, J. M. (2000). Reactions to Employee Performance Monitoring: Framework, Review, and Research Directions. Human Performance, 13(1), 85–113. https://doi.org/10.1207/S15327043HUP1301_4</p>
+<p>Tatum, M. (2022, December 1). The remote “helicopter bosses” who stunt worker resilience. https://www.bbc.com/worklife/article/20221130-the-remote-helicopter-bosses-who-stunt-worker-resilience</p>
+<p>Tost, L. P., &amp; Johnson, H. H. (2019). The prosocial side of power: How structural power over subordinates can promote social responsibility. Organizational Behavior and Human Decision Processes, 152, 25–46. https://doi.org/10.1016/j.obhdp.2019.04.004</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, A. Setiono</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/setiono_andrew">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/andrewse98/personal-web">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

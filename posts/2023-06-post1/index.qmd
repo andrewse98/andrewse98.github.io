@@ -1,0 +1,103 @@
+---
+title: "Better Approaches to Performance Monitoring"
+date: 2023-06-03
+toc: true
+toc_float: true
+
+image: luke-chesser-unsplash.jpg
+image-alt: >
+    An Illustration of Performance Monitoring (Photo by Luke Chesser on Unsplash
+
+description: >
+    The prevalence of the 'great resignation' and disengaged workforce poses significant challenges for global employers in talent retention and maintaining productivity. While effective employee performance monitoring is crucial, intrusive and demanding monitoring practices are met with employee resistance, leading to privacy invasion, focus interference, and reduced autonomy. 
+---
+
+# Introduction
+
+As employers of a global company, the ‘great resignation’ and ‘quiet quitting’ have become the forefront of workplace issues that warrants concern. A recent survey from McKinsey reported that 40% of the global workforce is somewhat likely to leave their current jobs (De Smet et al., 2021). Another report from Gallup (2022) revealed that only 21% of global workers are engaged at work. The same report also showed that nearly 5 out of 10 workers experience worry and stress daily at work. These reports presented the challenging landscape of retaining talents and maintaining their engagement.
+
+To thrive against these challenging work trends as a global company, an effective employee performance monitoring may prove to be essential. Employee performance monitoring entails various workplace practices that allow the collection of performance data from employees (Stanton, 2000). Such performance data may allow employers to identify which employees display high performance and should be retained. Furthermore, it may reveal which employees are showing signs of disengagement. Recently, these practices have been rapidly developing—from traditional to electronic performance monitoring—due to digital transformation within companies and the pandemic. Stanton (2000) highlighted that electronic monitoring differs from traditional monitoring, especially in its ability to collect performance data; electronic monitoring allows continuous monitoring of multiple dimensions of work performance, whereas traditional monitoring requires the presence of human observers. Furthermore, electronic has an obvious advantage of remote monitoring which aids employers during the pandemic. 
+
+Despite its apparent advantages, employees are pushing back against intrusive and demanding performance monitoring (Kantor et al., 2022). oday, both white- and blue-collar workers are dealing with monitoring software that invades their privacy (e.g., software that takes photos at multiple random times a day) and interferes with their focus (e.g., "idle" buttons). Furthermore, they are dealing with micro-managing leaders who demand multiple, but often unnecessary, status reports. Moreover, these practices have been taken to the extent that employees are unable to do essential offline work (e.g., deep thinking, reading printouts, talking to customers) or breaks (e.g., bathroom breaks) without receiving a reprimand from the software or their leaders (e.g., through constant check-in, notifications, or emails).
+
+This trend of employees’ pushback indicates the mounting pressure to maintain productivity among employers. However, it also revealed that employers are unaware of how employees would react to monitoring system features. Therefore, understanding the underlying psychological process employees experience under performance monitoring would likely result in a competitive advantage over other companies. Furthermore, such understanding would allow for designing an effective monitoring system. 
+
+Research in organizational psychology may provide a framework and insights to move forward. Specifically, adapting Carayon's (1993) framework, employee performance monitoring is proposed to influence employee well-being through job design. Job designs are further divided into three key components: (1) job demand, (2) job control, and (3) social support. In the following paragraphs, these components will be extended to gain a deeper understanding employees’ psychological process.
+
+# The Effect of Performance Monitoring on Employees
+
+## Performance monitoring and job demand
+
+Carayon’s (1993) framework proposed that performance monitoring could affect the level of stress that employees experience through its influence on job demand. Employees reported that monitoring software often tracks their mouse movements and keyboard clicks, which forces them to be constantly working or active, or else they would be marked with inactivity (Kantor et al., 2022). This is an example of real-time performance tracker that characterizes current performance monitoring. Under constant pressure, employees may perceive an increase in their job demands (i.e., high time pressure and workload), thus increasing stress. Indeed, the pressure to be constantly “on” can be seen as a form of task-related job stressor (Sonnentag & Frese, 2012, p. 562), which could reduce employee well-being (Green, 2004).
+
+Furthermore, the constant pressure that performance monitoring imposes on employees may prevent them from recovering and potentially prolong their stress responses which would be harmful in the long run. According to DiStaso and Shoss (2020), employees need to perceive an “end” state of their current workload (e.g., employees only need to clock in for 40 hours of work per week, project timelines indicating when it would be finished). They found that anticipating a workload decrease would help employees buffer against the negative effect of workload stressors. However, the typical characteristic of performance monitoring that interferes with “idle” times (e.g., bathroom breaks, talking to family or colleagues) may prevent employees from seeing the proverbial “light at the end of the tunnel.” Thus, exacerbating the negative effect of the workload.
+
+## Performance monitoring and control
+
+Another important factor that is influenced by performance monitoring is employees’ enactment of control at work. Drawing from Kotabe and Hofmann (2015) Integrative Self-Control Theory (ISCT), we conclude that there are three possible avenues of performance monitoring effect on employee behavioral enactment: (1) control motivation, (2) control capacity, and (3) enactment constraints. 
+
+The first avenue, control motivation, is defined as the personal “aspiration to control desire” (Kotabe & Hofmann, 2015, p. 624). Lian et al. (2017) noted that individuals are motivated to engage in self-control at work based on its expected consequences. Control motivation is then closely related to performance monitoring. Performance monitoring communicates which behaviors are rewarded (or punished), allowing employees to evaluate the value and consequence of their behaviors.
+
+The second avenue, control capacity, pertains to individuals' resources that enable them to override desire (Kotabe & Hofmann, 2015). It was found to be closely linked with executive functions and relied on direct attention—a depletable and restorable resource (Kaplan & Berman, 2010). Performance monitoring has the potential to redirect or deplete attention. In the former case, performance monitoring may direct employees' attention to work dimensions that need further improvement, thus helping them refocus self-control effort to enhance task performance. In the latter case, intrusive performance monitoring can potentially distract employees from focusing on work or essential tasks. Jeske and Santuzzi (2015) found that close performance monitoring reduce employees perceived control. Furthermore, performance monitoring only directs attention to those tasks that are being monitored, thus depleting resources from other tasks (Ravid et al., 2020).
+
+The last avenue, enactment constraint, represents the contextual factors that restrict behavioral options (Kotabe & Hofmann, 2015). This contextual restriction is related to Carayon’s (1993) idea of job control as the mediator between performance monitoring and stress. Specifically, Carayon (1993) argued that some features of performance monitoring might influence the level of control that employees have over their pace of work (i.e., instrumental control) or how tasks are executed and expected (i.e., conceptual control). Indeed, we saw that intrusive performance monitoring could make employees feel dictated. For instance, Kantor et al. (2022) reported how performance monitoring software dictates hospice chaplains’ relationships with the dying; they sometimes have to change the nature of their relationships (e.g., shifted time and quality of relationship) to meet the standard determined by the software. 
+
+## Performance Monitoring and Social Support
+
+Social support is the last component of job design that mediates the effect of performance monitoring (Carayon, 1993). Carayon (1993) argued that specific characteristics of the performance monitoring system might change the nature of social support employees receive from supervisors. Anecdotal examples of managers who immediately notify their workers after brief “Away” periods or constantly ask for progress updates from their subordinates  (Tatum, 2022), are indicative of the changes in the nature of leader’s support. These changes may happen because performance monitoring systems shape how leaders and their subordinates construe their power (Sewell et al., 2012). The availability of an intrusive monitoring system may possibly obscure the leader’s sense of social connection to their employees since leaders primarily interact with their employees through the performance metric. This severing of social connection thus reduces the social support that leaders provide to their subordinates, leaving them with increasing work pressure but low support.
+
+# Recommendations
+
+As noted above, performance monitoring may affect workers well-being and organizational behavior by influencing employee job demand, control, and social relationship with their behavior. Taking these processes into account there are three recommendations that should be considered. 
+
+## Design Monitoring Systems that Allows Recovery
+
+As discussed, the monitoring system can increase employee stress because it increases job demand and has the potential to reduce control capacity from essential tasks. One way to reduce these adverse effects is to avoid constant monitoring and embed recovery time or break into the monitoring system. Short breaks allow employees to replenish control capacity (Lian et al., 2017). Furthermore, it is vital that the system not only allows for recovery but also promotes awareness for employees that they will have recovery. Anticipation of a workload decrease (i.e., availability of recovery time) may buffer employees from experiencing negative emotions in the current high workload condition (DiStaso & Shoss, 2020).  
+
+Embedding recovery times to the monitoring system can be done by allowing “idle” time that is considered reasonable for taking breaks. For example, Amazon has relaxed its performance monitoring regulations by dropping off the term “time off task” and instructing their managers to only look for “idle” periods longer than 15 minutes. Moreover, the monitoring system can be designed to stop when certain conditions are met, therefore creating the anticipation of a decrease in workload. For instance, instead of designing a monitoring system that continuously tracks mouse activities, employers may opt for a monitoring system that can be turned off after certain working hours or goals are met.
+
+## Involve Employees while Designing Monitoring System
+
+Intensive monitoring system can sometimes be perceived as “demoralizing” and not accurately reflect the nature of work that employees are going through (Kantor et al., 2022). These reports might be indicative that monitoring system are often designed with the purpose of surveillance and punishment. In other words, the system is designed without a rationale beyond collecting employee information or without employees interest of pursuing their work goals. These may create perceptions of low control among employees and increase work pressure and stress. Instead of leaving out employees from the design process, creating opportunities for discussion and providing legitimate justification as to why the monitoring should exist may be more useful. 
+
+Within the discussion process, employees may provide information about which tasks should be considered as important to be monitored. Furthermore, employees can provide ideas as to how their performance should ideally be monitored. By giving opportunities for discussing the monitoring process, employees perceive that they have some level of control toward their job, thus increasing job control. Additionally, employee should be provided with justification for the monitoring system. Justification of system tend to produce positive response, such as greater feelings of justice, in those being monitored (Ravid et al., 2020).
+
+## Empower Leaders to be Responsible to Others
+
+Leaders hold a strategic position in a performance monitoring system as they hold the power to manage and discipline their subordinates (Sewell et al., 2012). However, as discussed above, one must be cautious about how the performance monitoring system influences a leader’s construal of their power. An intrusive monitoring system may reduce social connections, thus severing the relational aspect of power. Tost and Johnson (2019) argued that leaders who failed to construe the relational aspect of power would refrain from investing their resources to benefit members of the group. Consequently, it is important to influence leaders to construe their power as a responsibility to be stewards of their subordinates.	
+One way to change a leader's power construal is to introduce, develop, or strengthen benevolent power norms and dependency awareness. Tost and Johnson (2019) found that benevolent power norms mediated the relationship between structural power and responsibility. Benevolent power norms may inform leaders of the expectation that they should use performance monitoring (i.e., a form of structural power) to benefit the interests of employees. Furthermore, leaders should be made aware that their subordinates are also dependent on leaders’ access to performance monitoring to evaluate their performances and determine ways to enhance them.
+
+---
+
+# References
+
+Carayon, P. (1993). Effect of Electronic Performance Monitoring on Job Design and Worker Stress: Review of the Literature and Conceptual Model. Human Factors, 35(3), 385–395. https://doi.org/10.1177/001872089303500301
+
+De Smet, A., Dowling, B., Mugayar-Baldocchi, M., & Schaninger, B. (2021). How companies can turn the Great Resignation into the Great Attraction | McKinsey. https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/great-attrition-or-great-attraction-the-choice-is-yours
+
+DiStaso, M. J., & Shoss, M. K. (2020). Looking forward: How anticipated workload change influences the present workload–emotional strain relationship. Journal of Occupational Health Psychology, 25(6), 401–409. https://doi.org/10.1037/ocp0000261
+
+Gallup. (2022). State of the Global Workplace 2020 Report: The Voice of the World’s Employees. https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx
+
+Green, F. (2004). Work Intensification, Discretion, and the Decline in Well-Being at Work. Eastern Economic Journal, 30(4), 615–625.
+
+Jeske, D., & Santuzzi, A. M. (2015). Monitoring what and how: Psychological implications of electronic performance monitoring. New Technology, Work and Employment, 30(1), 62–78. https://doi.org/10.1111/ntwe.12039
+Kantor, J., Sundaram, A., Aufrichtig, A., & Taylor, R. (2022, August 15). The Rise of the Worker Productivity Score. The New York Times. https://www.nytimes.com/interactive/2022/08/14/business/worker-productivity-tracking.html
+
+Kaplan, S., & Berman, M. G. (2010). Directed Attention as a Common Resource for Executive Functioning and Self-Regulation. Perspectives on Psychological Science, 5(1), 43–57. https://doi.org/10.1177/1745691609356784
+
+Kotabe, H. P., & Hofmann, W. (2015). On Integrating the Components of Self-Control. Perspectives on Psychological Science, 10(5), 618–638. https://doi.org/10.1177/1745691615593382
+
+Lian, H., Yam, K. C., Ferris, D. L., & Brown, D. (2017). Self-Control at Work. Academy of Management Annals, 11(2), 703–732. https://doi.org/10.5465/annals.2015.0126
+
+Ravid, D. M., Tomczak, D. L., White, J. C., & Behrend, T. S. (2020). EPM 20/20: A Review, Framework, and Research Agenda for Electronic Performance Monitoring. Journal of Management, 46(1), 100–126. https://doi.org/10.1177/0149206319869435
+
+Sewell, G., Barker, J. R., & Nyberg, D. (2012). Working under intensive surveillance: When does ‘measuring everything that moves’ become intolerable? Human Relations, 65(2), 189–215. https://doi.org/10.1177/0018726711428958
+
+Sonnentag, S., & Frese, M. (2012). Stress in Organizations. In N. W. Schmitt & S. Highhouse (Eds.), Handbook of psychology, Vol. 12: Industrial and organizational psychology (pp. 560–592). Wiley.
+
+Stanton, J. M. (2000). Reactions to Employee Performance Monitoring: Framework, Review, and Research Directions. Human Performance, 13(1), 85–113. https://doi.org/10.1207/S15327043HUP1301_4
+
+Tatum, M. (2022, December 1). The remote “helicopter bosses” who stunt worker resilience. https://www.bbc.com/worklife/article/20221130-the-remote-helicopter-bosses-who-stunt-worker-resilience
+
+Tost, L. P., & Johnson, H. H. (2019). The prosocial side of power: How structural power over subordinates can promote social responsibility. Organizational Behavior and Human Decision Processes, 152, 25–46. https://doi.org/10.1016/j.obhdp.2019.04.004
