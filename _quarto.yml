@@ -23,7 +23,7 @@ website:
         file: index.qmd
       - text: "About"
         file: about.qmd
-      - text: "TidyTuesday"
+      # - text: "TidyTuesday"
   repo-url: https://github.com/andrewse98/personal-web
   repo-actions: [issue]
 
