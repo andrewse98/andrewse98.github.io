@@ -3,32 +3,28 @@ project:
   output-dir: docs
 
 website:
-  # title: "A's Side Note" # It's a pun of Andrew's Side Note
-  page-footer:
-    border: true 
-    left: "Copyright 2022, A. Setiono"
-    right: 
-      - icon: twitter
-        href: https://twitter.com/setiono_andrew
-      - icon: github
-        href: https://github.com/andrewse98/personal-web
+  # page-footer:
+  #   border: true 
+  #   left: "Copyright 2024, A. Setiono"
+  #   right: 
+  #     - icon: twitter
+  #       # href: https://twitter.com/setiono_andrew
+  #     - icon: github
+  #       href: https://github.com/andrewse98/personal-web
   favicon: img/favicon.ico
   navbar:
-    background: dark
-    collapse: false
-    search: false
     logo: img/web_logo.png  
     left:
-      - text: "Blog"
-        file: index.qmd
-      - text: "About"
+      - text: "about"
         file: about.qmd
-      # - text: "TidyTuesday"
-  repo-url: https://github.com/andrewse98/personal-web
-  repo-actions: [issue]
+      - text: "blog"
+        file: index.qmd
 
 format:
   html:
-    theme: darkly
-    css: styles.css
+    theme: 
+    - yeti
+    - custom.scss
+    mainfont: Helvetica Neue 
+    monofont: Consolas
     toc: true

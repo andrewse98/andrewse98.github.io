@@ -1,0 +1,47 @@
+/*-- scss:functions --*/
+
+/*-- scss:default --*/
+
+//
+// Color system
+//
+
+// Shades of Blue
+$blue-050: #eff6ff !default;
+$blue-100: #dbeafe !default;
+$blue-200: #bfdbfe !default;
+$blue-300: #93c5fd !default;
+$blue-400: #60a5fa !default;
+$blue-500: #3b82f6 !default;
+$blue-600: #2563eb !default;
+$blue-700: #1e4ed8 !default;
+$blue-800: #1e40af !default;
+$blue-900: #1e3a8a !default;
+$blue-950: #172554 !default;
+
+// 50 Shades of Gray: Slate
+$white:    #fff !default;
+$gray-050: #f8fafc !default;
+$gray-100: #f1f5f9 !default;
+$gray-200: #e2e8f0 !default;
+$gray-300: #cbd5e1 !default;
+$gray-400: #94a3b8 !default;
+$gray-500: #64748b !default;
+$gray-600: #475569 !default;
+$gray-700: #334155 !default;
+$gray-800: #1e293b !default;
+$gray-900: #0f172a !default;
+$gray-950: #020617 !default;
+$black:    #000 !default;
+
+// Navbar
+
+$navbar-bg: $gray-050;
+$nav-tabs-link-active-color: $white;
+
+// Table of contents
+
+$toc-color: $blue-500;
+$toc-active-border: $blue-500;
+
+/*-- scss:rules --*/
