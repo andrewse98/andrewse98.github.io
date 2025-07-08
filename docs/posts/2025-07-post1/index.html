@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-07-08">
+<meta name="description" content="An interactive plot to visualize the state of workforce in Indonesia based on age using BPS API">
+
+<title>Mapping Indonesia Workforce’s Age Group using BPS API</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-373804568f8bb983da0ba48eaf9a59d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/web_logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">about</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-post" id="toc-why-this-post" class="nav-link active" data-scroll-target="#why-this-post">Why this post?</a></li>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
+  <li><a href="#the-bps-api" id="toc-the-bps-api" class="nav-link" data-scroll-target="#the-bps-api">The BPS API</a></li>
+  <li><a href="#parsing-the-api-response" id="toc-parsing-the-api-response" class="nav-link" data-scroll-target="#parsing-the-api-response">Parsing the API Response</a></li>
+  <li><a href="#label-the-parsed-values" id="toc-label-the-parsed-values" class="nav-link" data-scroll-target="#label-the-parsed-values">Label the parsed values</a></li>
+  <li><a href="#visualizing-the-data" id="toc-visualizing-the-data" class="nav-link" data-scroll-target="#visualizing-the-data">Visualizing the Data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mapping Indonesia Workforce’s Age Group using BPS API</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    An interactive plot to visualize the state of workforce in Indonesia based on age using BPS API
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="why-this-post" class="level1">
+<h1>Why this post?</h1>
+<p>I want to create an interactive plot to visualize the state of workforce in Indonesia based on age using BPS API. The goal is to provide a clear and informative visualization that allows users to explore the data and understand the trends in the workforce by age group. In this post, I will walk you through the process of retrieving the data from the BPS API, parsing the response, and creating an interactive plot using <code>ggplot2</code> and <code>plotly</code>.</p>
+<p>An easily accessible and interactive visualization of the workforce data can help researchers, policymakers, and the general public to better understand the trends and patterns in the workforce by age group. This can lead to more informed decisions and policies that address the needs of the aging workforce in Indonesia.</p>
+<p>I am primarily inspired by the <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Ageing_Europe_-_statistics_on_working_and_moving_into_retirement#:~:text=In%202019%2C%20there%20were%20200.0,aged%2065%20years%20or%20more.">Eurostat</a> homepage which allows researchers to track data about the aging workforce.</p>
+</section>
+<section id="libraries" class="level1">
+<h1>Libraries</h1>
+<p>First, let’s load the necessary libraries to work with the BPS API and manipulate the data. We will use <code>httr2</code> for making API requests and <code>tidyverse</code> for data manipulation and visualization.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.4.3</code></pre>
+</div>
+</div>
+</section>
+<section id="the-bps-api" class="level1">
+<h1>The BPS API</h1>
+<p>The BPS API provides access to various datasets from the Badan Pusat Statistik (BPS) Indonesia (Bureau of Statistics Indonesia). To use the API, you need an API key, which you can obtain by registering on the <a href="https://webapi.bps.go.id/developer/">BPS website</a>.</p>
+<p>First, login to your BPS account, fill out your profile details, and create an application in the “Application”. The API key is stored in the “App ID” column. Once you have the key, you can set it as an environment variable in your R session or in your <code>.Renviron</code> file. Read the <a href="https://webapi.bps.go.id/documentation/">BPS API Documentation</a> for more details on how to use it.</p>
+<p>Once you are ready with your API key, you can start making requests to the BPS API. The base URL for the API is <code>https://webapi.bps.go.id/v1/api/list</code>, and you can specify various parameters to filter the data you want to retrieve.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"BPS_API_KEY"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"https://webapi.bps.go.id/v1/api/list"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are a few parameters that you can use to filter the data, such as <code>model</code>, <code>lang</code>, <code>domain</code>, <code>var</code>, and <code>th</code>. Unfortunately, the BPS API documentation does not provide a detailed explanation of these parameters, so you will need to experiment with them to find the data you are looking for.</p>
+<p>One way to explore the available data is to find the data you want to retrieve using the BPS website, and inspect the JSON response in the browser’s developer tools. This will give you an idea of the structure of the data and the parameters you need for your API request.</p>
+<p>For example, I want to extract the <a href="https://www.bps.go.id/id/statistics-table/2/Njk4IzI=/angkatan-kerja--ak--menurut-golongan-umur.html">data</a> for the “Angkatan kerja menurut golongan umur” (Workforce by Age Group) for the year 2025. In the webpage, click on the <code>&lt;/&gt; JSON</code> button to view the endpoint API.</p>
+<p><img src="image1.png" class="img-fluid"></p>
+<p>For example, the endpoint for the “Angkatan kerja menurut golongan umur” table is:</p>
+<p>“https://webapi.bps.go.id/v1/api/list/model/data/lang/ind/domain/0000/var/698/th/125/key/[WebAPI_KEY]”</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>[WebAPI_KEY]</code> part of the URL is a placeholder for your actual API key. You need to replace it with your own API key to make the request work.</p>
+</div>
+</div>
+<p>From this endpoint, we can modify our api request parameters using the <code>req_url_path_append()</code> function from the <code>httr2</code> package. The parameters we will use are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="st">"data"</span> <span class="co"># model for "Data"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lang <span class="ot">&lt;-</span> <span class="st">"ind"</span> <span class="co"># language for "Bahasa Indonesia"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>domain <span class="ot">&lt;-</span> <span class="st">"0000"</span> <span class="co"># domain for "Pusat"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="st">"698"</span> <span class="co"># variable for table "Angkatan kerja menurut golongan umur"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>th <span class="ot">&lt;-</span> <span class="st">"125"</span> <span class="co"># tahun 2025</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>api_response <span class="ot">&lt;-</span> <span class="fu">request</span>(base_url) <span class="sc">|&gt;</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_url_path_append</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model"</span>, model,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lang"</span>, lang,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"domain"</span>, domain,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"var"</span>, var,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"th"</span>, <span class="dv">125</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key"</span>, api_key</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Below is the response from the API request. The response is in JSON format, which we can parse to extract the data we need using <code>resp_body_json()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>api_response_list <span class="ot">&lt;-</span> api_response <span class="sc">|&gt;</span> <span class="fu">resp_body_json</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(api_response_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 12
+ $ status           : chr "OK"
+ $ data-availability: chr "available"
+ $ last_update      : chr "2025-06-25 10:04:27"
+ $ subject          :List of 1
+  ..$ :List of 2
+  .. ..$ val  : int 520
+  .. ..$ label: chr "Tenaga Kerja"
+ $ var              :List of 1
+  ..$ :List of 7
+  .. ..$ val    : int 698
+  .. ..$ label  : chr "Angkatan Kerja (AK) Menurut Golongan Umur"
+  .. ..$ unit   : chr ""
+  .. ..$ subj   : chr "Tenaga Kerja"
+  .. ..$ def    : chr ""
+  .. ..$ decimal: int 2
+  .. ..$ note   : chr "&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br "| __truncated__
+ $ turvar           :List of 4
+  ..$ :List of 2
+  .. ..$ val  : int 827
+  .. ..$ label: chr "Bekerja"
+  ..$ :List of 2
+  .. ..$ val  : int 828
+  .. ..$ label: chr "Jumlah Pengangguran"
+  ..$ :List of 2
+  .. ..$ val  : int 829
+  .. ..$ label: chr "Jumlah AK"
+  ..$ :List of 2
+  .. ..$ val  : int 830
+  .. ..$ label: chr "% Bekerja / AK"
+ $ labelvervar      : chr "Golongan Umur"
+ $ vervar           :List of 11
+  ..$ :List of 2
+  .. ..$ val  : int 1
+  .. ..$ label: chr "15-19"
+  ..$ :List of 2
+  .. ..$ val  : int 2
+  .. ..$ label: chr "20-24"
+  ..$ :List of 2
+  .. ..$ val  : int 3
+  .. ..$ label: chr "25-29"
+  ..$ :List of 2
+  .. ..$ val  : int 4
+  .. ..$ label: chr "30-34"
+  ..$ :List of 2
+  .. ..$ val  : int 5
+  .. ..$ label: chr "35-39"
+  ..$ :List of 2
+  .. ..$ val  : int 6
+  .. ..$ label: chr "40-44"
+  ..$ :List of 2
+  .. ..$ val  : int 7
+  .. ..$ label: chr "45-49"
+  ..$ :List of 2
+  .. ..$ val  : int 8
+  .. ..$ label: chr "50-54"
+  ..$ :List of 2
+  .. ..$ val  : int 9
+  .. ..$ label: chr "55-59"
+  ..$ :List of 2
+  .. ..$ val  : int 10
+  .. ..$ label: chr "60+"
+  ..$ :List of 2
+  .. ..$ val  : int 11
+  .. ..$ label: chr "Total"
+ $ tahun            :List of 1
+  ..$ :List of 2
+  .. ..$ val  : int 125
+  .. ..$ label: chr "2025"
+ $ turtahun         :List of 3
+  ..$ :List of 2
+  .. ..$ val  : int 189
+  .. ..$ label: chr "Februari"
+  ..$ :List of 2
+  .. ..$ val  : int 190
+  .. ..$ label: chr "Agustus"
+  ..$ :List of 2
+  .. ..$ val  : int 191
+  .. ..$ label: chr "Tahunan"
+ $ datacontent      :List of 44
+  ..$ 7698827125189 : int 16164793
+  ..$ 2698828125189 : int 2527741
+  ..$ 4698828125189 : int 619800
+  ..$ 9698828125189 : int 262632
+  ..$ 7698829125189 : int 16450825
+  ..$ 3698828125189 : int 1319299
+  ..$ 4698830125189 : num 96.4
+  ..$ 6698828125189 : int 332935
+  ..$ 1698827125189 : int 4724711
+  ..$ 3698829125189 : int 17703447
+  ..$ 5698828125189 : int 351093
+  ..$ 11698830125189: num 95.2
+  ..$ 1698830125189 : num 82.2
+  ..$ 1698829125189 : int 5746898
+  ..$ 6698829125189 : int 17107389
+  ..$ 2698830125189 : num 84.4
+  ..$ 11698829125189: int 153049487
+  ..$ 1698828125189 : int 1022187
+  ..$ 8698829125189 : int 14323589
+  ..$ 11698827125189: int 145771180
+  ..$ 8698828125189 : int 242764
+  ..$ 5698827125189 : int 17177085
+  ..$ 2698829125189 : int 16224936
+  ..$ 11698828125189: int 7278307
+  ..$ 4698827125189 : int 16799939
+  ..$ 5698830125189 : int 98
+  ..$ 4698829125189 : int 17419739
+  ..$ 9698827125189 : int 11512218
+  ..$ 2698827125189 : int 13697195
+  ..$ 5698829125189 : int 17528178
+  ..$ 10698828125189: int 313824
+  ..$ 8698827125189 : int 14080825
+  ..$ 9698830125189 : num 97.8
+  ..$ 10698830125189: num 98.3
+  ..$ 7698830125189 : num 98.3
+  ..$ 7698828125189 : int 286032
+  ..$ 6698827125189 : int 16774454
+  ..$ 6698830125189 : num 98
+  ..$ 3698827125189 : int 16384148
+  ..$ 8698830125189 : num 98.3
+  ..$ 9698829125189 : int 11774850
+  ..$ 10698829125189: int 18769636
+  ..$ 10698827125189: int 18455812
+  ..$ 3698830125189 : num 92.5
+ $ related          : list()</code></pre>
+</div>
+</div>
+</section>
+<section id="parsing-the-api-response" class="level1">
+<h1>Parsing the API Response</h1>
+<p>Upon a closer inspection, the key format of the API response appears to be a concatenation of several values, including <code>vervar</code>, <code>var</code>, <code>turvar</code>, <code>tahun</code>, and <code>turtahun</code>. For example, the key <code>7698827125189</code> can be broken down as follows:</p>
+<ul>
+<li><code>vervar</code>: 7 -&gt; “45-49 tahun”</li>
+<li><code>var</code>: 698 -&gt; “Angkatan kerja menurut golongan umur”</li>
+<li><code>turvar</code>: 827 -&gt; “Bekerja”</li>
+<li><code>tahun</code>: 125 -&gt; year “2025”</li>
+<li><code>turtahun</code>: 189 –&gt; month “February”</li>
+</ul>
+<p>To help parse these keys, we can create a function that extracts these values based on their known positions and lengths. Note that the keys length may vary slightly between 13-14 characters as the <code>vervar</code> values can be of values 1-11, but the rest of the values are fixed in length. Thus, we can use the <code>substr()</code> function to extract the values based on their positions by counting from right to left:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>parse_key <span class="ot">&lt;-</span> <span class="cf">function</span>(key) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  vervar_val <span class="ot">&lt;-</span> <span class="fu">substr</span>(key, <span class="dv">1</span>, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">12</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  var_val <span class="ot">&lt;-</span> <span class="fu">substr</span>(key, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">11</span>, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">9</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  turvar_val <span class="ot">&lt;-</span> <span class="fu">substr</span>(key, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">8</span>, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">6</span>) </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  tahun_val <span class="ot">&lt;-</span> <span class="fu">substr</span>(key, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">5</span>, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">3</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  turtahun_val <span class="ot">&lt;-</span> <span class="fu">substr</span>(key, <span class="fu">nchar</span>(key) <span class="sc">-</span> <span class="dv">2</span>, <span class="fu">nchar</span>(key))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">vervar =</span> vervar_val,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">var =</span> var_val,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">turvar =</span> turvar_val,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">tahun =</span> tahun_val,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">turtahun =</span> turtahun_val</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s try this function with example keys. As we can see, the function correctly returns a list with the parsed values for each key:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>key_example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"7698827125189"</span>, <span class="st">"10698829125189"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>parsed_key <span class="ot">&lt;-</span> <span class="fu">parse_key</span>(key_example)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>parsed_key</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$vervar
+[1] "7"  "10"
+
+$var
+[1] "698" "698"
+
+$turvar
+[1] "827" "829"
+
+$tahun
+[1] "125" "125"
+
+$turtahun
+[1] "189" "189"</code></pre>
+</div>
+</div>
+</section>
+<section id="label-the-parsed-values" class="level1">
+<h1>Label the parsed values</h1>
+<p>Note that each value in the key corresponds to a specific label. We can create a named vector to map these values to their respective labels. For starters, let’s consider the <code>vervar</code> values, which represent age groups. The <code>vervar</code> is a list which contains 11 sub lists, each containing a value and a label. For example, the 15-19 age group has a value of 1 and a label of “15-19”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>api_response_list<span class="sc">$</span>vervar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]]$val
+[1] 1
+
+[[1]]$label
+[1] "15-19"
+
+
+[[2]]
+[[2]]$val
+[1] 2
+
+[[2]]$label
+[1] "20-24"
+
+
+[[3]]
+[[3]]$val
+[1] 3
+
+[[3]]$label
+[1] "25-29"
+
+
+[[4]]
+[[4]]$val
+[1] 4
+
+[[4]]$label
+[1] "30-34"
+
+
+[[5]]
+[[5]]$val
+[1] 5
+
+[[5]]$label
+[1] "35-39"
+
+
+[[6]]
+[[6]]$val
+[1] 6
+
+[[6]]$label
+[1] "40-44"
+
+
+[[7]]
+[[7]]$val
+[1] 7
+
+[[7]]$label
+[1] "45-49"
+
+
+[[8]]
+[[8]]$val
+[1] 8
+
+[[8]]$label
+[1] "50-54"
+
+
+[[9]]
+[[9]]$val
+[1] 9
+
+[[9]]$label
+[1] "55-59"
+
+
+[[10]]
+[[10]]$val
+[1] 10
+
+[[10]]$label
+[1] "60+"
+
+
+[[11]]
+[[11]]$val
+[1] 11
+
+[[11]]$label
+[1] "Total"</code></pre>
+</div>
+</div>
+<p>We can extract these values and labels from the API response and create a named vector for easy reference. We can use the <code>map_df()</code> and <code>pull()</code> function from the <code>purrr</code> package to iterate over the list and extract the values and labels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>age_group <span class="ot">&lt;-</span> api_response_list<span class="sc">$</span>vervar <span class="sc">|&gt;</span> <span class="fu">map_dfr</span>(\(x) x) <span class="sc">|&gt;</span> <span class="fu">pull</span>(label, val)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>employment_status <span class="ot">&lt;-</span> api_response_list<span class="sc">$</span>turvar <span class="sc">|&gt;</span> <span class="fu">map_dfr</span>(\(x) x) <span class="sc">|&gt;</span> <span class="fu">pull</span>(label, val)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>time_category <span class="ot">&lt;-</span> api_response_list<span class="sc">$</span>turtahun <span class="sc">|&gt;</span> <span class="fu">map_dfr</span>(\(x) x) <span class="sc">|&gt;</span> <span class="fu">pull</span>(label, val)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> api_response_list<span class="sc">$</span>tahun <span class="sc">|&gt;</span> <span class="fu">map_df</span>(\(x) x) <span class="sc">|&gt;</span> <span class="fu">pull</span>(label, val)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>age_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1       2       3       4       5       6       7       8       9      10 
+"15-19" "20-24" "25-29" "30-34" "35-39" "40-44" "45-49" "50-54" "55-59"   "60+" 
+     11 
+"Total" </code></pre>
+</div>
+</div>
+<p>Next, we can extract the data content using <code>enframe()</code> to create a data frame with the values and their corresponding labels. The <code>datacontent</code> field contains the actual data values, which we can convert into a data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>datacontent <span class="ot">&lt;-</span> api_response_list<span class="sc">$</span>datacontent <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"key"</span>, <span class="at">value =</span> <span class="st">"value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can then join the parsed values with the labels to create a complete data frame with all the necessary information. We will use <code>mutate()</code> to convert the <code>key</code> and <code>value</code> columns to character and double types, respectively, and then apply the <code>parse_key()</code> function to extract the parsed values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>datacontent_labeled <span class="ot">&lt;-</span> datacontent <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">key =</span> <span class="fu">as.character</span>(key),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">as.double</span>(value),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">parsed_key =</span> <span class="fu">map</span>(key, parse_key)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_wider</span>(parsed_key) <span class="sc">|&gt;</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">"key"</span>, <span class="st">"var"</span>)) <span class="sc">|&gt;</span>  <span class="co"># removed unused column</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">vervar =</span> age_group[vervar],</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">turvar =</span> employment_status[turvar],</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">turtahun =</span> time_category[turtahun],</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tahun =</span> year[tahun]</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_group =</span> vervar,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">employment_status =</span> turvar,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">time_category =</span> turtahun,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> tahun</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see the result is a nice table with the parsed values and their corresponding labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datacontent_labeled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+     value age_group employment_status   year  time_category
+     &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt; &lt;chr&gt;        
+1 16164793 45-49     Bekerja             2025  Februari     
+2  2527741 20-24     Jumlah Pengangguran 2025  Februari     
+3   619800 30-34     Jumlah Pengangguran 2025  Februari     
+4   262632 55-59     Jumlah Pengangguran 2025  Februari     
+5 16450825 45-49     Jumlah AK           2025  Februari     
+6  1319299 25-29     Jumlah Pengangguran 2025  Februari     </code></pre>
+</div>
+</div>
+<p>We can further clean this data by assigning factors to the age groups and employment status for better visualization, and then reorder the columns to have a more logical order.</p>
+<p>I decided to filter the “% Bekerja / AK” from the <code>employment_status</code> column as it shows percentage of the workforce that is employed, which is a different unit of measurement compared to the other columns that show counts of individuals in each age group. Additionally, I filter the “Total” age group as it is not relevant for our analysis.</p>
+<p>Finally, we can select the relevant columns and ensure that the <code>age_group</code> column is ordered correctly for visualization purposes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>datacontent_cleaned <span class="ot">&lt;-</span> datacontent_labeled <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span>employment_status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jumlah AK"</span>,<span class="st">"% Bekerja / AK"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    age_group <span class="sc">!=</span> <span class="st">"Total"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">factor</span>(age_group, <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"15-19"</span>, <span class="st">"20-24"</span>, <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>, <span class="st">"55-59"</span>, <span class="st">"60+"</span>, <span class="st">"Total"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">time_category =</span> <span class="fu">factor</span>(time_category, <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Januari"</span>, <span class="st">"Februari"</span>, <span class="st">"Maret"</span>, <span class="st">"April"</span>, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Mei"</span>, <span class="st">"Juni"</span>, <span class="st">"Juli"</span>, <span class="st">"Agustus"</span>, </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"September"</span>, <span class="st">"Oktober"</span>, <span class="st">"November"</span>, <span class="st">"Desember"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tahunan"</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    )),</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">employment_status =</span> <span class="fu">factor</span>(employment_status, <span class="at">levels =</span> <span class="fu">c</span>(</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bekerja"</span>, <span class="st">"Jumlah Pengangguran"</span>, <span class="st">"Jumlah AK"</span>, <span class="st">"% Bekerja / AK"</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    )),</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    year, time_category, employment_status, age_group, value</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    year, time_category, employment_status, age_group</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now view the cleaned data frame to see the final result.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   year  time_category employment_status age_group    value
+   &lt;chr&gt; &lt;fct&gt;         &lt;fct&gt;             &lt;ord&gt;        &lt;dbl&gt;
+ 1 2025  Februari      Bekerja           15-19      4724711
+ 2 2025  Februari      Bekerja           20-24     13697195
+ 3 2025  Februari      Bekerja           25-29     16384148
+ 4 2025  Februari      Bekerja           30-34     16799939
+ 5 2025  Februari      Bekerja           35-39     17177085
+ 6 2025  Februari      Bekerja           40-44     16774454
+ 7 2025  Februari      Bekerja           45-49     16164793
+ 8 2025  Februari      Bekerja           50-54     14080825
+ 9 2025  Februari      Bekerja           55-59     11512218
+10 2025  Februari      Bekerja           60+       18455812</code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-the-data" class="level1">
+<h1>Visualizing the Data</h1>
+<p>Now that we have the cleaned data, we can create an interactive plot to visualize the workforce by age group and employment status. We will use <code>ggplot2</code> for the initial plot. We use the <code>scales::comma()</code> function to format the y-axis labels with commas for better readability.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datacontent_cleaned, <span class="fu">aes</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> age_group, <span class="at">y =</span> value, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> employment_status)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> time_category, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Workforce by Age Group and Employment Status"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Age Group"</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Employment Status"</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Number of individuals"</span>, </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">scale_cut =</span> scales<span class="sc">::</span><span class="fu">cut_long_scale</span>())</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/ggplot_datacontent-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What is great about this plot is that it allows us to see the distribution of the workforce by age group and employment status across different months of the year.</p>
+<p>Interestingly, we found that the workforce in the 60+ age group is quite significant, with a total of 18.455.812 individuals employed in February 2025. This is a notable finding as it indicates that the aging workforce in Indonesia is still actively participating in the labor market.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
