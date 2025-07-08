@@ -4,16 +4,16 @@ project:
 
 website:
   # page-footer:
-  #   border: true 
+  #   border: true
   #   left: "Copyright 2024, A. Setiono"
-  #   right: 
+  #   right:
   #     - icon: twitter
   #       # href: https://twitter.com/setiono_andrew
   #     - icon: github
   #       href: https://github.com/andrewse98/personal-web
   favicon: img/favicon.ico
   navbar:
-    logo: img/web_logo.png  
+    logo: img/web_logo.png
     left:
       - text: "about"
         file: about.qmd
@@ -22,9 +22,9 @@ website:
 
 format:
   html:
-    theme: 
-    - yeti
-    - custom.scss
-    mainfont: Helvetica Neue 
+    theme:
+      - yeti
+      - custom.scss
+    mainfont: Noto Sans
     monofont: Consolas
     toc: true
