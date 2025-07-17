@@ -1,24 +1,26 @@
 ---
-title: "Mapping Indonesia Workforce's Age Group using BPS API"
-date: 2023-07-08
+title: "Unlocking Indonesia's Workforce: A Practical Guide to the BPS (Bureau of Statistics) API in R"
+date: 2025-07-08
 toc: true
 toc_float: true
 reading-time: true
-categories: [Tutorial]
-description: "Learn how to retrieve and visualize workforce data by age group in Indonesia using the BPS API."
+categories: [Tutorial, R, API, BPS, Aging Workforce]
+image: title.png
+description: "A step-by-step guide to accessing and visualizing workforce data in Indonesia using the BPS API in R. Learn how to retrieve, parse, and visualize data on the aging workforce with practical examples."
+bibliography: references.bib
+csl: apa.csl
 ---
 
-# Why this post?
+Getting an accurate and up-to-date understanding of the workforce in Indonesia is crucial for researchers, policymakers, and the general public.
+The Badan Pusat Statistik (BPS) Indonesia (Bureau of Statistics Indonesia) provides a wealth of data through its [API](https://webapi.bps.go.id/documentation/).
 
-I want to create an interactive plot to visualize the state of workforce in Indonesia based on age using BPS API. The goal is to provide a clear and informative visualization that allows users to explore the data and understand the trends in the workforce by age group. In this post, I will walk you through the process of retrieving the data from the BPS API, parsing the response, and creating an interactive plot using `ggplot2` and `plotly`.
-
-An easily accessible and interactive visualization of the workforce data can help researchers, policymakers, and the general public to better understand the trends and patterns in the workforce by age group. This can lead to more informed decisions and policies that address the needs of the aging workforce in Indonesia. 
-
-I am primarily inspired by the [Eurostat](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Ageing_Europe_-_statistics_on_working_and_moving_into_retirement#:~:text=In%202019%2C%20there%20were%20200.0,aged%2065%20years%20or%20more.) homepage which allows researchers to track data about the aging workforce.
+This guide will walk you through the process of accessing and visualizing workforce data in Indonesia using the BPS API in R.
+We will focus on the "Angkatan kerja menurut golongan umur" (Workforce by Age Group) dataset for the year 2025, which is particularly relevant given the general trend of aging workforce worldwide [@worldeconomicforum2025].
 
 # Libraries
 
-First, let's load the necessary libraries to work with the BPS API and manipulate the data. We will use `httr2` for making API requests and `tidyverse` for data manipulation and visualization.
+First, let's load the necessary libraries to work with the BPS API and manipulate the data.
+We will use `httr2` for making API requests and `tidyverse` for data manipulation and visualization.
 
 ```{r}
 #| label: libraries
@@ -31,38 +33,59 @@ library(httr2)
 library(tidyverse)
 ```
 
-# The BPS API
+# Using the BPS API
 
-The BPS API provides access to various datasets from the Badan Pusat Statistik (BPS) Indonesia (Bureau of Statistics Indonesia). To use the API, you need an API key, which you can obtain by registering on the [BPS website](https://webapi.bps.go.id/developer/). 
+## Getting the API Token
 
-First, login to your BPS account, fill out your profile details, and create an application in the "Application". The API key is stored in the "App ID" column. Once you have the key, you can set it as an environment variable in your R session or in your `.Renviron` file. Read the [BPS API Documentation](https://webapi.bps.go.id/documentation/) for more details on how to use it.
+The BPS API provides access to various data sets from the Badan Pusat Statistik (BPS) Indonesia (Bureau of Statistics Indonesia).
 
-Once you are ready with your API key, you can start making requests to the BPS API. The base URL for the API is `https://webapi.bps.go.id/v1/api/list`, and you can specify various parameters to filter the data you want to retrieve.
+To use the API, you need an API key, which you can obtain by registering on the [BPS website](https://webapi.bps.go.id/developer/). Log in to your BPS account, fill out your profile details, and create an application in the "Applications" tab @fig-applications. 
+
+Once you have created an application, you will see your API **token** in the "App ID" column. You can copy this token and set it as an environment variable. I recommend storing this key in the `.Renviron` file in your R project directory, so you can access it easily in your R scripts.
+
+```{r}
+#| label: bps-api-key
+
+api_key <- Sys.getenv("BPS_API_KEY")
+```
+
+![Application tabs in the BPS Web API Profile](applications.png){#fig-applications fig-align="center" width="400"}
+
+## Making API Requests
+
+Next, we develop our API request. We start by specifying the base URL for the API which is: `https://webapi.bps.go.id/v1/api/list`
 
 ```{r}
 #| label: bps-api-base
 
-api_key <- Sys.getenv("BPS_API_KEY")
 base_url <- "https://webapi.bps.go.id/v1/api/list"
 ```
 
-There are a few parameters that you can use to filter the data, such as `model`, `lang`, `domain`, `var`, and `th`. Unfortunately, the BPS API documentation does not provide a detailed explanation of these parameters, so you will need to experiment with them to find the data you are looking for. 
+The BPS API provides a variety of endpoints to access different data sets. The base URL is followed by specific parameters that define the data you want to retrieve. 
 
-One way to explore the available data is to find the data you want to retrieve using the BPS website, and inspect the JSON response in the browser's developer tools. This will give you an idea of the structure of the data and the parameters you need for your API request. 
+According to the [API documentation](https://webapi.bps.go.id/documentation/), to retrieve data you need to specify the following parameters: `model`, `domain`, `var`, and `th`. Unfortunately, the documentation does not provide a comprehensive list of available variables and its corresponding data set, so you will need to explore the API to find the data you want.
 
-For example, I want to extract the [data](https://www.bps.go.id/id/statistics-table/2/Njk4IzI=/angkatan-kerja--ak--menurut-golongan-umur.html) for the "Angkatan kerja menurut golongan umur" (Workforce by Age Group) for the year 2025. In the webpage, click on the `</> JSON` button to view the endpoint API. 
+One way to specify the right API request is to find the data you want to retrieve using the BPS website, and inspect the API request template to that data by clicking on the JSON button @fig-json-endpoint. This will give you an idea of the structure of the data and the parameters you need for your API request.
 
-![](image1.png)
+![Click on the JSON button](image1.png){#fig-json-endpoint fig-align="center" width="700"}
 
-For example, the endpoint for the "Angkatan kerja menurut golongan umur" table is:
+In our example, we want to access the [data](https://www.bps.go.id/id/statistics-table/2/Njk4IzI=/angkatan-kerja--ak--menurut-golongan-umur.html) for the "Angkatan kerja menurut golongan umur" (Workforce by Age Group) for the year 2025. Clicking on the JSON button, we can see the API endpoint that retrieves this data is:
+
+```{r}
+#| label: bps-api-endpoint
+#| echo: true
+#| eval: false
 
 "https://webapi.bps.go.id/v1/api/list/model/data/lang/ind/domain/0000/var/698/th/125/key/[WebAPI_KEY]"
+```
 
-::: {.callout-note}
-The `[WebAPI_KEY]` part of the URL is a placeholder for your actual API key. You need to replace it with your own API key to make the request work.
+::: callout-note
+The `[WebAPI_KEY]` part of the URL is a placeholder for your actual API key.
+You need to replace it with your own API key to make the request work.
 :::
 
-From this endpoint, we can modify our api request parameters using the `req_url_path_append()` function from the `httr2` package. The parameters we will use are:
+From this endpoint, we can modify our api request parameters using the `req_url_path_append()` function from the `httr2` package.
+The parameters we will use are:
 
 ```{r}
 #| label: bps-api-request
@@ -73,7 +96,7 @@ domain <- "0000" # domain for "Pusat"
 var <- "698" # variable for table "Angkatan kerja menurut golongan umur"
 th <- "125" # tahun 2025
 
-api_response <- request(base_url) |> 
+api_response <- request(base_url) |>
   req_url_path_append(
     "model", model,
     "lang", lang,
@@ -81,16 +104,24 @@ api_response <- request(base_url) |>
     "var", var,
     "th", 125,
     "key", api_key
-  ) |> 
+  ) |>
   req_perform()
 ```
 
-Below is the response from the API request. The response is in JSON format, which we can parse to extract the data we need using `resp_body_json()` function.
+Below is the response from the API request.
+The response is in JSON format, which we can parse to extract the data we need using `resp_body_json()` function.
+
+```{r}
+#| eval: false
+
+api_response_list <- api_response |> resp_body_json()
+glimpse(api_response_list)
+```
 
 ```{r}
 #| label: bps-api-response
-#| echo: true
-#| include: true
+#| class: scroll
+#| echo: false
 
 api_response_list <- api_response |> resp_body_json()
 glimpse(api_response_list)
@@ -98,15 +129,27 @@ glimpse(api_response_list)
 
 # Parsing the API Response
 
-Upon a closer inspection, the key format of the API response appears to be a concatenation of several values, including `vervar`, `var`, `turvar`, `tahun`, and `turtahun`. For example, the key `7698827125189` can be broken down as follows:
+The API response contains several fields, including `vervar`, `var`, `turvar`, `tahun`, `turtahun`, and `datacontent`. When looking at the `datacontent` field, we can see that it contains a list of key-value pairs, where the keys are unique identifiers for each data point and the values are the actual data values. The keys appears to be a concatenation of several values, including `vervar`, `var`, `turvar`, `tahun`, and `turtahun`.
 
-- `vervar`: 7 -> "45-49 tahun"
-- `var`: 698 -> "Angkatan kerja menurut golongan umur"
-- `turvar`: 827 -> "Bekerja"
-- `tahun`: 125 -> year "2025"
-- `turtahun`: 189 --> month "February"
+```{r}
+#| label: bps-api-datacontent
+#| echo: false
+datacontent <- api_response_list$datacontent
+head(datacontent)
+```
 
-To help parse these keys, we can create a function that extracts these values based on their known positions and lengths. Note that the keys length may vary slightly between 13-14 characters as the `vervar` values can be of values 1-11, but the rest of the values are fixed in length. Thus, we can use the `substr()` function to extract the values based on their positions by counting from right to left:
+
+For example, the key `7698827125189` can be broken down as follows:
+
+-   `vervar`: 7 -\> "45-49 tahun"
+-   `var`: 698 -\> "Angkatan kerja menurut golongan umur"
+-   `turvar`: 827 -\> "Bekerja"
+-   `tahun`: 125 -\> year "2025"
+-   `turtahun`: 189 --\> month "February"
+
+To help parse these keys, we can create a function that extracts these values based on their known positions and lengths.
+Note that the keys length may vary slightly between 13-14 characters as the `vervar` values can be of values 1-11, but the rest of the values are fixed in length.
+Thus, we can use the `substr()` function to extract the values based on their positions by counting from right to left:
 
 ```{r}
 #| label: parse_key
@@ -114,10 +157,9 @@ To help parse these keys, we can create a function that extracts these values ba
 #| include: true
 
 parse_key <- function(key) {
- 
   vervar_val <- substr(key, 1, nchar(key) - 12)
   var_val <- substr(key, nchar(key) - 11, nchar(key) - 9)
-  turvar_val <- substr(key, nchar(key) - 8, nchar(key) - 6) 
+  turvar_val <- substr(key, nchar(key) - 8, nchar(key) - 6)
   tahun_val <- substr(key, nchar(key) - 5, nchar(key) - 3)
   turtahun_val <- substr(key, nchar(key) - 2, nchar(key))
 
@@ -133,7 +175,8 @@ parse_key <- function(key) {
 }
 ```
 
-Let's try this function with example keys. As we can see, the function correctly returns a list with the parsed values for each key:
+Let's try this function with example keys.
+As we can see, the function correctly returns a list with the parsed values for each key:
 
 ```{r}
 #| label: test_parse_key
@@ -146,56 +189,84 @@ parsed_key
 
 # Label the parsed values
 
-Note that each value in the key corresponds to a specific label. We can create a named vector to map these values to their respective labels. For starters, let's consider the `vervar` values, which represent age groups. The `vervar` is a list which contains 11 sub lists, each containing a value and a label. For example, the 15-19 age group has a value of 1 and a label of "15-19". 
+Note that each value in the key corresponds to a specific label.
+We can create a named vector to map these values to their respective labels.
+For starters, let's consider the `vervar` values, which represent age groups.
+The `vervar` is a list which contains 11 sub lists, each containing a value and a label.
+For example, the 15-19 age group has a value of 1 and a label of "15-19".
+
+```{r}
+#| eval: false
+api_response_list$vervar
+```
 
 ```{r}
 #| label: vervar_val_labels
-
+#| class: scroll
+#| echo: false
 api_response_list$vervar
 ```
+
 We can extract these values and labels from the API response and create a named vector for easy reference. We can use the `map_df()` and `pull()` function from the `purrr` package to iterate over the list and extract the values and labels:
 
 ```{r}
 #| label: vervar_val_labels_map
-#| echo: true
- 
-age_group <- api_response_list$vervar |> map_dfr(\(x) x) |> pull(label, val)
-employment_status <- api_response_list$turvar |> map_dfr(\(x) x) |> pull(label, val)
-time_category <- api_response_list$turtahun |> map_dfr(\(x) x) |> pull(label, val)
-year <- api_response_list$tahun |> map_df(\(x) x) |> pull(label, val)
+
+# Extract age group label
+age_group <- api_response_list$vervar |>
+  map_dfr(\(x) x) |>
+  pull(label, val)
+
+# Extract employment status label
+employment_status <- api_response_list$turvar |>
+  map_dfr(\(x) x) |>
+  pull(label, val)
+
+# Extract time category label
+time_category <- api_response_list$turtahun |>
+  map_dfr(\(x) x) |>
+  pull(label, val)
+
+# Extract year label
+year <- api_response_list$tahun |>
+  map_df(\(x) x) |>
+  pull(label, val)
 
 # Sample
 age_group
 ```
 
-Next, we can extract the data content using `enframe()` to create a data frame with the values and their corresponding labels. The `datacontent` field contains the actual data values, which we can convert into a data frame.
+Next, we can extract the data content using `enframe()` to create a data frame with the values and their corresponding labels.
+The `datacontent` field contains the actual data values, which we can convert into a data frame.
 
 ```{r}
 #| label: datacontent_extraction
 
-datacontent <- api_response_list$datacontent |> 
+datacontent <- api_response_list$datacontent |>
   enframe(name = "key", value = "value")
 ```
 
-We can then join the parsed values with the labels to create a complete data frame with all the necessary information. We will use `mutate()` to convert the `key` and `value` columns to character and double types, respectively, and then apply the `parse_key()` function to extract the parsed values.
+We can then join the parsed values with the labels to create a complete data frame with all the necessary information.
+
+We will use `mutate()` to convert the `key` and `value` columns to character and double types, respectively, and then apply the `parse_key()` function to extract the parsed values.
 
 ```{r}
 #| label: datacontent_processing
 
-datacontent_labeled <- datacontent |> 
+datacontent_labeled <- datacontent |>
   mutate(
     key = as.character(key),
     value = as.double(value),
     parsed_key = map(key, parse_key)
-  ) |> 
-  unnest_wider(parsed_key) |> 
-  select(-c("key", "var")) |>  # removed unused column
+  ) |>
+  unnest_wider(parsed_key) |>
+  select(-c("key", "var")) |> # removed unused column
   mutate(
     vervar = age_group[vervar],
     turvar = employment_status[turvar],
     turtahun = time_category[turtahun],
     tahun = year[tahun]
-  ) |> 
+  ) |>
   rename(
     age_group = vervar,
     employment_status = turvar,
@@ -213,40 +284,44 @@ We can see the result is a nice table with the parsed values and their correspon
 head(datacontent_labeled)
 ```
 
-We can further clean this data by assigning factors to the age groups and employment status for better visualization, and then reorder the columns to have a more logical order. 
+We can further clean this data by assigning factors to the age groups and employment status for better visualization, and then reorder the columns to have a more logical order.
 
-I decided to filter the "% Bekerja / AK" from the `employment_status` column as it shows percentage of the workforce that is employed, which is a different unit of measurement compared to the other columns that show counts of individuals in each age group. Additionally, I filter the "Total" age group as it is not relevant for our analysis. 
+I decided to filter the "% Bekerja / AK" from the `employment_status` column as it shows percentage of the workforce that is employed, which is a different unit of measurement compared to the other columns that show counts of individuals in each age group.
+Additionally, I filter the "Total" age group as it is not relevant for our analysis.
 
 Finally, we can select the relevant columns and ensure that the `age_group` column is ordered correctly for visualization purposes.
 
-
 ```{r}
 #| label: datacontent_cleaning
- 
-datacontent_cleaned <- datacontent_labeled |> 
+
+datacontent_cleaned <- datacontent_labeled |>
   filter(
-    !employment_status %in% c("Jumlah AK","% Bekerja / AK"),
+    !employment_status %in% c("Jumlah AK", "% Bekerja / AK"),
     age_group != "Total",
   ) |>
   mutate(
     age_group = factor(age_group, levels = c(
-      "15-19", "20-24", "25-29", "30-34", "35-39", 
+      "15-19", "20-24", "25-29", "30-34", "35-39",
       "40-44", "45-49", "50-54", "55-59", "60+", "Total"
-    ), ordered = TRUE
-    ),
+    ), ordered = TRUE),
     time_category = factor(time_category, levels = c(
-      "Januari", "Februari", "Maret", "April", 
-      "Mei", "Juni", "Juli", "Agustus", 
+      "Januari", "Februari", "Maret", "April",
+      "Mei", "Juni", "Juli", "Agustus",
       "September", "Oktober", "November", "Desember",
       "Tahunan"
     )),
     employment_status = factor(employment_status, levels = c(
       "Bekerja", "Jumlah Pengangguran", "Jumlah AK", "% Bekerja / AK"
-    )),
-  ) |> 
+    ), labels = c(
+      "Bekerja" = "Employed",
+      "Jumlah Pengangguran" = "Unemployed",
+      "Jumlah AK" = "Total Workforce",
+      "% Bekerja / AK" = "Percentage Employed"
+    ), ordered = FALSE)
+  ) |>
   select(
     year, time_category, employment_status, age_group, value
-  ) |> 
+  ) |>
   arrange(
     year, time_category, employment_status, age_group
   )
@@ -262,25 +337,27 @@ head(datacontent_cleaned, 10)
 
 # Visualizing the Data
 
-Now that we have the cleaned data, we can create an interactive plot to visualize the workforce by age group and employment status. We will use `ggplot2` for the initial plot. We use the `scales::comma()` function to format the y-axis labels with commas for better readability.
+Now that we have the cleaned data, we can create an interactive plot to visualize the workforce by age group and employment status.
+We will use `ggplot2` for the initial plot.
+We use the `scales::comma()` function to format the y-axis labels with commas for better readability.
 
 ```{r}
-#| label: ggplot_datacontent
+#| label: fig-workforce-plot
 #| echo: true
 
 ggplot(datacontent_cleaned, aes(
-  x = age_group, y = value, 
-  fill = employment_status)
-) +
+  x = age_group, y = value,
+  fill = employment_status
+)) +
   geom_col(position = "dodge") +
-  facet_wrap(~ time_category, scales = "free_y") +
+  facet_wrap(~time_category, scales = "free_y") +
   labs(
-    title = "Workforce by Age Group and Employment Status",
+    title = "Workforce by Age Group and Employment Status in Indonesia (2025)",
     x = "Age Group",
     fill = "Employment Status"
   ) +
   scale_y_continuous(
-    "Number of individuals", 
+    "Number of individuals",
     labels = scales::label_number(scale_cut = scales::cut_long_scale())
   ) +
   scale_fill_brewer(palette = "Set2") +
@@ -288,19 +365,26 @@ ggplot(datacontent_cleaned, aes(
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
-
 ```
 
-What is great about this plot is that it allows us to see the distribution of the workforce by age group and employment status across different months of the year. 
+What is great about this @fig-workforce-plot[plot] is that it allows us to see the distribution of the workforce by age group and employment status across different months of the year.
 
 ```{r}
 #| label: params
 #| echo: false
 
-working_over_60 <- datacontent_cleaned |> 
-  filter(age_group == "60+" & employment_status == "Bekerja") |> 
-  pull(value) |> 
+working_over_60 <- datacontent_cleaned |>
+  filter(age_group == "60+" & employment_status == "Employed") |>
+  pull(value) |>
   scales::number(decimal.mark = ",", big.mark = ".")
 ```
 
-Interestingly, we found that the workforce in the 60+ age group is quite significant, with a total of `r working_over_60` individuals employed in February 2025. This is a notable finding as it indicates that the aging workforce in Indonesia is still actively participating in the labor market.
+Interestingly, we found that the workforce in the 60+ age group is quite significant, with a total of `r working_over_60` individuals employed in February 2025. Considering the national pension age of 58 years in Indonesia, this indicates a substantial number of older individuals remaining in the workforce, which may point towards an aging workforce. However, a detailed comparison of the workforce data across different age groups and time points is needed to draw more conclusive insights.
+
+# Conclusion
+
+In this tutorial, we have demonstrated how to access Indonesia workforce data through BPS API in R. The BPS API provides an easy way to retrieve and visualize data on the workforce in Indonesia, including the aging workforce. While the API documentation may not provide a comprehensive list of available variables, we can explore the BPS website to find the data we need and generate the corresponding API endpoints. Combined with the power of R, we can easily parse and visualize this data to gain insights into the workforce trends in Indonesia. This ease of access to data is crucial for researchers, policymakers, and the general public to understand the dynamics of the workforce in Indonesia, especially in the context of an aging population [@worldeconomicforum2025]. 
+
+# Reference
+
+::: {#refs} :::
