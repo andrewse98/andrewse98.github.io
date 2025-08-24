@@ -1,5 +1,8 @@
 /.quarto/
+
 *.code-workspace
 *.Rhistory
-.Rproj.user
-yeti.scss
+*.Rproj.user
+*.Rproj
+
+*.scss
